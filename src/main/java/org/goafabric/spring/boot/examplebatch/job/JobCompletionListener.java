@@ -13,7 +13,7 @@ public class JobCompletionListener extends JobExecutionListenerSupport {
     @Override
     public void afterJob(JobExecution jobExecution) {
 
-        if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
+        if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
             log.info("Job finished: {}", jobExecution.getJobInstance().getJobName());
         } else {
             log.error("There was a problem with jor job: {}", jobExecution.getJobInstance().getJobName());

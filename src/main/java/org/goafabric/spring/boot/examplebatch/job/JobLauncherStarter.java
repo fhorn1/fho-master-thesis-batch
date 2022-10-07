@@ -27,6 +27,9 @@ public class JobLauncherStarter implements CommandLineRunner {
     @Autowired
     private Job toyCatalogJob;
 
+    @Autowired
+    private Job opsCatalogImportJob;
+
     @Value("${spring.batch.scheduler.enabled}")
     private Boolean schedulerEnabled;
 
@@ -50,9 +53,7 @@ public class JobLauncherStarter implements CommandLineRunner {
         }
     }
     public void start(JobParameters jobParameters) throws Exception {
-        jobLauncher.run(personCatalogJob, jobParameters);
-        jobLauncher.run(toyCatalogJob, jobParameters);
+        jobLauncher.run(opsCatalogImportJob, jobParameters);
     }
 
 }
-
