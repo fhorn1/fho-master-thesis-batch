@@ -30,6 +30,13 @@ public class OpsCodeItemWriter extends JdbcBatchItemWriter<OpsCode> {
         this.sql = sql;
     }
 
+    @BeforeStep
+    public void retrieveInterstepData(StepExecution stepExecution) {
+        JobExecution jobExecution = stepExecution.getJobExecution();
+        ExecutionContext jobContext = jobExecution.getExecutionContext();
+        this.setHeadId((String) jobContext.get("headId"));
+    }
+
     @Override
     public void afterPropertiesSet() {
         this.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>());
@@ -39,9 +46,8 @@ public class OpsCodeItemWriter extends JdbcBatchItemWriter<OpsCode> {
     }
 
     public void write(List<? extends OpsCode> items) throws Exception {
-        // items.forEach(item -> log.info("Writing item: {}", item));
-        // TODO write list of OpsCodes
         items.forEach(item -> item.setHeadId(headId));
+        items.forEach(item -> log.info("Writing item: {}", item));
         super.write(items);
     }
 }

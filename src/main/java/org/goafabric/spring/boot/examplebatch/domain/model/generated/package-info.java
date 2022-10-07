@@ -1,2 +1,5 @@
-@jakarta.xml.bind.annotation.XmlSchema(namespace = "urn:ehd/001", elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@XmlSchema(namespace = "urn:ehd/001", elementFormDefault = XmlNsForm.QUALIFIED)
 package org.goafabric.spring.boot.examplebatch.domain.model.generated;
+
+import javax.xml.bind.annotation.XmlNsForm;
+import javax.xml.bind.annotation.XmlSchema;
