@@ -40,8 +40,7 @@ public class JobLauncherStarter implements CommandLineRunner {
     public void run(String... args) throws Exception {
         if (!schedulerEnabled) {
             start(new JobParametersBuilder().addString("catalogVersion", "10").toJobParameters());
-            log.info("launched manually and wait 5 seconds");
-            Thread.currentThread().join(5000);
+            log.info("job done");
             SpringApplication.exit(applicationContext, () -> 0);
         }
     }
